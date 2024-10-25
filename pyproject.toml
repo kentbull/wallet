@@ -1,0 +1,35 @@
+[project]
+name = "wallet"
+version = "0.1.2"
+description = "Wallet application the KERI Foundation"
+authors = [
+    { name = "Kevin Griffin", email = "griffin.kev@gmail.com" },
+    { name = "Phillip Feairheller", email = "pfeairheller@gmail.com" },
+    { name = "Kent Bull", email = "kent@kentbull.com" }
+]
+readme = "README.md"
+keywords = ["GLEIF", "GAR", "cryptography", "KERI", "ACDC"]
+requires-python = ">=3.11.6"
+dependencies = [
+    "dataclasses-json==0.6.7",
+    "flet==0.24.1",
+    "cit-hio==0.6.14",
+    "cit-keri==1.1.22rc1",
+    "mnemonic==0.21",
+    "multicommand==1.0.0",
+    "pillow==11.0.0",
+    "toml==0.10.2",
+    "qrcode[pil]==7.4.2",
+    "uvloop==0.21.0",
+]
+
+[project.urls]
+homepage = "https://github.com/keri-foundation/wallet"
+repository = "https://github.com/keri-foundation/wallet"
+
+[tool.uv]
+prerelease = "allow"
+dev-dependencies = [
+    "ruff>=0.6.9"
+]
+
