@@ -4,6 +4,7 @@ import logging
 import flet as ft
 from keri.core import eventing, serdering
 
+from wallet.app.colouring import Colouring
 from wallet.notifying.notification import NotificationsBase
 
 logger = logging.getLogger('wallet')

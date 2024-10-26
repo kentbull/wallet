@@ -1,6 +1,5 @@
 import flet as ft
 
-from wallet.app import colouring
 from wallet.app.assets import Assets
 
 

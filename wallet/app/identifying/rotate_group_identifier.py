@@ -13,6 +13,7 @@ from keri.app.habbing import GroupHab, Hab, Habery
 from keri.core import coring, serdering
 from keri.core.eventing import Kever
 
+from wallet.app.colouring import Colouring
 from wallet.app.contacting.contact import filter_witnesses
 from wallet.app.identifying.identifier import IdentifierBase
 from wallet.app.oobing.oobi_resolver_service import OOBIResolverService

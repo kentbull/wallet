@@ -1,7 +1,5 @@
 import flet as ft
 
-from wallet.app import colouring
-
 
 class Navbar(ft.Stack):
     IDENTIFIERS = 0
