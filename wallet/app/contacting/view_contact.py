@@ -13,6 +13,7 @@ from keri.app.habbing import GroupHab
 from keri.peer import exchanging
 from mnemonic import mnemonic
 
+from wallet.app.colouring import Colouring
 from wallet.app.contacting.contact import ContactBase
 from wallet.app.oobing.oobi_resolver_service import OOBIResolverService
 from wallet.logs import log_errors

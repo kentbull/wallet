@@ -13,7 +13,6 @@ from keri.core.coring import Tiers
 
 from wallet.app import drawing
 from wallet.app.assets import Assets
-from wallet.app.colouring import Colouring
 from wallet.app.layout import Layout
 from wallet.core.agenting import close_agent_task
 from wallet.core.configing import WalletConfig

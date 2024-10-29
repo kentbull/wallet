@@ -29,6 +29,7 @@ from keri.vc import protocoling
 from keri.vdr import credentialing, verifying
 from keri.vdr.eventing import Tevery
 
+from wallet.app.colouring import Colouring
 from wallet.core.grouping import GroupRequester
 from wallet.core.syncing import KELStateReader, KELStateUpdater
 from wallet.logs import log_errors

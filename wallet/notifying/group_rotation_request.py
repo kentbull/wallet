@@ -10,6 +10,7 @@ from keri.app import connecting, grouping
 from keri.core import coring, serdering
 from ordered_set import OrderedSet as oset
 
+from wallet.app.colouring import Colouring
 from wallet.app.contacting.contact import filter_witnesses
 from wallet.app.identifying import Identifiers
 from wallet.app.oobing.oobi_resolver import OobiResolver

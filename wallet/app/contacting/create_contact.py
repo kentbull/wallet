@@ -5,6 +5,7 @@ from urllib.parse import urljoin, urlparse
 import flet as ft
 from keri import kering
 
+from wallet.app.colouring import Colouring
 from wallet.app.contacting.contact import ContactBase
 from wallet.app.oobing.oobi_resolver import OobiResolver
 
