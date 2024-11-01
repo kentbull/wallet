@@ -12,7 +12,7 @@ from wallet.app.contacting.contact import ContactBase
 logger = logging.getLogger('wallet')
 
 
-class Contact(ContactBase):
+class Contacts(ContactBase):
     def __init__(self, app):
         self.app = app
         self.list = ft.Column([], spacing=0, expand=True)
@@ -38,6 +38,8 @@ class Contact(ContactBase):
 
         contacts = sorted(contacts, key=lambda c: c['alias'])
         contacts = list(filter(lambda c: 'tag=witness' not in c['oobi'], contacts))
+        contacts = list(filter(lambda c: 'witness' not in c['type'], contacts))
+
         if len(contacts) == 0:
             self.list.controls.append(
                 ft.Container(

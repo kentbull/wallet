@@ -296,17 +296,14 @@ class Noter(doing.Doer):
 
     async def show_unread(self):
         self.app.notificationsButton.icon = ft.icons.NOTIFICATIONS_ACTIVE_ROUNDED
-        self.app.notificationsButton.icon_color = Colouring.get(Colouring.SECONDARY)
         await self.app.page.update_async()
 
     async def show_read(self):
-        self.app.notificationsButton.icon = ft.icons.NOTIFICATIONS_NONE_ROUNDED
-        self.app.notificationsButton.icon_color = Colouring.get(Colouring.ON_PRIMARY)
+        self.app.notificationsButton.icon = ft.icons.NOTIFICATIONS_ROUNDED
         await self.app.page.update_async()
 
     async def show_no_notifications(self):
         self.app.notificationsButton.icon = ft.icons.NOTIFICATIONS_NONE_ROUNDED
-        self.app.notificationsButton.icon_color = Colouring.get(Colouring.ON_PRIMARY)
         await self.app.page.update_async()
 
     def enter(self):

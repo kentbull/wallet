@@ -43,13 +43,13 @@ class AgentDrawer(ft.NavigationDrawer):
         self.controls = [
             ft.Container(height=12),
             ft.Container(
-                content=ft.Row(controls=[ft.Container(width=16), ft.Icon(ft.icons.WALLET_ROUNDED), ft.Text('Agents')]),
+                content=ft.Row(controls=[ft.Container(width=16), ft.Icon(ft.icons.WALLET_ROUNDED), ft.Text('Wallets')]),
                 height=64,
             ),
             ft.Divider(thickness=2),
             ft.NavigationDrawerDestination(
                 icon_content=ft.Icon(ft.icons.ADD_ROUNDED),
-                label='Initialize new agent',
+                label='Initialize new wallet',
             ),
             *agents,
         ]
@@ -72,7 +72,7 @@ class AgentDrawer(ft.NavigationDrawer):
         await self.page.close_end_drawer_async()
         selected = e.control.controls[e.control.selected_index + 3]
 
-        if selected.label == 'Initialize new agent':
+        if selected.label == 'Initialize new wallet':
             self.page.dialog = self.agent_init
             await self.agent_init.open_init(None)
         elif hasattr(self.page, 'hby_name') and self.page.hby_name == selected.label:

@@ -119,9 +119,9 @@ class OobiResolver(Component):
         self.reset()
         if self.callback is not None:
             if inspect.iscoroutinefunction(self.callback):
-                await self.callback(True)
+                await self.callback(self.oobi)
             else:
-                self.callback(True)
+                self.callback(self.oobi)
 
     @log_errors
     async def on_service_fail(self):

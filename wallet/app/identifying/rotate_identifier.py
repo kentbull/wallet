@@ -68,7 +68,7 @@ class RotateIdentifierPanel(IdentifierBase):
             self.app.agent.witners.push(dict(serder=self.hab.kever.serder))
             await self.app.snack(f'Rotating {self.hab.pre}, waiting for witness receipts...')
 
-        self.app.page.route = '/identifiers'
+        self.app.page.route = f'/identifiers/{self.hab.pre}/view'
         await self.app.page.update_async()
 
     async def cancel(self, _):
@@ -98,54 +98,71 @@ class RotateIdentifierPanel(IdentifierBase):
                             ft.Text(kever.sner.num),
                         ]
                     ),
+
                     ft.Divider(),
-                    ft.Row(
-                        [
-                            ft.Column(
+                    ft.ExpansionTile(
+                        title=ft.Text('Witness configuration'),
+                        affinity=ft.TileAffinity.LEADING,
+                        initially_expanded=False,
+                        controls=[
+                            ],
+                        expand=True,
+                    ),
+                    ft.Divider(),
+                    ft.ExpansionTile(
+                        title=ft.Text('Key configuration'),
+                        affinity=ft.TileAffinity.LEADING,
+                        initially_expanded=False,
+                        controls=[
+                            ft.Row(
                                 [
-                                    ft.Row(
+                                    ft.Column(
                                         [
-                                            ft.Text(
-                                                'Current signing threshold',
-                                                weight=FontWeight.BOLD,
-                                                width=175,
+                                            ft.Row(
+                                                [
+                                                    ft.Text(
+                                                        'Current signing threshold',
+                                                        weight=FontWeight.BOLD,
+                                                        width=175,
+                                                    ),
+                                                    self.isith,
+                                                ]
                                             ),
-                                            self.isith,
-                                        ]
-                                    ),
-                                    ft.Row(
-                                        [
-                                            ft.Text(
-                                                'Next signing threshold',
-                                                weight=FontWeight.BOLD,
-                                                width=175,
+                                            ft.Row(
+                                                [
+                                                    ft.Text(
+                                                        'Next signing threshold',
+                                                        weight=FontWeight.BOLD,
+                                                        width=175,
+                                                    ),
+                                                    self.nsith,
+                                                ]
                                             ),
-                                            self.nsith,
-                                        ]
-                                    ),
-                                    ft.Row(
-                                        [
-                                            ft.Text(
-                                                'Count',
-                                                weight=FontWeight.BOLD,
-                                                width=175,
+                                            ft.Row(
+                                                [
+                                                    ft.Text(
+                                                        'Count',
+                                                        weight=FontWeight.BOLD,
+                                                        width=175,
+                                                    ),
+                                                    self.ncount,
+                                                ]
                                             ),
-                                            self.ncount,
-                                        ]
-                                    ),
-                                    ft.Row(
-                                        [
-                                            ft.Text(
-                                                'Toad',
-                                                weight=FontWeight.BOLD,
-                                                width=175,
+                                            ft.Row(
+                                                [
+                                                    ft.Text(
+                                                        'Toad',
+                                                        weight=FontWeight.BOLD,
+                                                        width=175,
+                                                    ),
+                                                    self.toad,
+                                                ]
                                             ),
-                                            self.toad,
                                         ]
                                     ),
                                 ]
                             ),
-                        ]
+                        ],
                     ),
                     ft.Divider(),
                     ft.Row(

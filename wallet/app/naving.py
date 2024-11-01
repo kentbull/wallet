@@ -4,7 +4,8 @@ import flet as ft
 class Navbar(ft.Stack):
     IDENTIFIERS = 0
     CONTACTS = 1
-    SETTINGS = 2
+    WITNESSES = 2
+    SETTINGS = 3
 
     def __init__(self, page: ft.Page):
         super().__init__()
@@ -21,6 +22,12 @@ class Navbar(ft.Stack):
                 icon_content=ft.Icon(ft.icons.PEOPLE),
                 selected_icon_content=ft.Icon(ft.icons.PEOPLE_OUTLINE),
                 label='Contacts',
+                padding=ft.padding.all(10),
+            ),
+            ft.NavigationRailDestination(
+                icon_content=ft.Icon(ft.icons.VIEW_COMFY_ALT),
+                selected_icon_content=ft.Icon(ft.icons.VIEW_COMFY_ALT_OUTLINED),
+                label='Witnesses',
                 padding=ft.padding.all(10),
             ),
             ft.NavigationRailDestination(
@@ -51,6 +58,8 @@ class Navbar(ft.Stack):
             self.page.route = '/identifiers'
         elif index == self.CONTACTS:
             self.page.route = '/contacts'
+        elif index == self.WITNESSES:
+            self.page.route = '/witnesses'
         elif index == self.SETTINGS:
             self.page.route = '/settings'
 

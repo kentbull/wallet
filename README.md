@@ -1,12 +1,12 @@
-# Wallet
+# Sparán
 
-The KERI Wallet is a heavyweight wallet providing a GUI for managing local KERI identifiers and keys. It is built on top of the KERI library, a custom KERI agent runtime, and Flet, a Flutter-based application framework.
+The KERI Wallet (Sparán) is a heavyweight wallet providing a GUI for managing local KERI identifiers and keys. It is built on top of the KERI library, a custom KERI agent runtime, and Flet, a Flutter-based application framework.
 
 Wallet is an alternative to the KERI CLI, the `kli`.
 
 ## Installation
 
-Wallet uses the [uv][UV] build system, an extremely fast Python package and project manager written in Rust. See their [installation instructions][UV_INSTALL] to install it for your platform. 
+Sparán uses the [uv][UV] build system, an extremely fast Python package and project manager written in Rust. See their [installation instructions][UV_INSTALL] to install it for your platform. 
 
 These instructions show how to set it up on a Mac, and Linux should be similar.
 
@@ -24,9 +24,9 @@ To run a python command with the `uv` environment you do
 
 - `uv run python <command/file>`
 
-### Running the wallet
+### Running Sparán
 
-You can run the wallet locally with the KERI demo witnesses and the [vLEI-server][VLEI_SERVER] credential schema caching server.
+You can run the app locally with the KERI demo witnesses and the [vLEI-server][VLEI_SERVER] credential schema caching server.
 See the [local services](#local-services) section for running the witnesses and `vLEI-server`. Start the local services prior to starting the wallet.
 
 So to run the wallet you would do

@@ -30,6 +30,8 @@ class ViewIdentifierPanel(IdentifierBase):
         self.org = self.app.agent.org
         self.hab = hab
         self.show_key_state_update = False
+        self.show_witness_panel = len(self.hab.kever.wits) > 0
+
         if isinstance(hab, habbing.GroupHab):
             self.typePanel = ft.Row(
                 [
@@ -400,9 +402,10 @@ class ViewIdentifierPanel(IdentifierBase):
                                     ),
                                 ]
                             ),
-                        ]
+                        ],
+                        visible=self.show_witness_panel,
                     ),
-                    ft.Divider(),
+                    ft.Divider(visible=self.show_witness_panel),
                     ft.Row(
                         [
                             ft.Text('Public Keys:', weight=ft.FontWeight.BOLD, width=175),

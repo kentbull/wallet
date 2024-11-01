@@ -5,7 +5,7 @@ from enum import Enum
 
 logger = logging.getLogger('wallet')
 
-DEFAULT_USERNAME = 'alice'
+DEFAULT_USERNAME = 'work'
 DEFAULT_PASSCODE = 'DoB26Fj4x9LboAFWJra17O'
 DEFAULT_WITNESS_POOL_PATH = './conf/witness-pools-production.json'
 DEFAULT_AGENT_CONFIG_DIR = './conf/production'  # Demo witnesses used with `kli witness demo`.
@@ -20,7 +20,7 @@ class Environments(Enum):
 
 @dataclass
 class WalletConfig:
-    app_name = 'Wallet'
+    app_name = 'Sparán'
     # Flet assets directory for pictures, fonts, and the like.
     assets_dir: str = './assets'
     # The specific font to use from the fonts subdirectory within the assets_dir.

@@ -57,7 +57,7 @@ class AgentInitialization(ft.AlertDialog):
         )
 
         self.modal = True
-        self.title = ft.Text('Agent Initialization')
+        self.title = ft.Text('Wallet Initialization')
         self.content = ft.Column(
             [
                 ft.Divider(),

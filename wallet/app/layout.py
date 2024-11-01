@@ -11,6 +11,9 @@ from wallet.app.identifying.rotate_group_identifier import RotateGroupIdentifier
 from wallet.app.identifying.rotate_identifier import RotateIdentifierPanel
 from wallet.app.identifying.view_identifer import ViewIdentifierPanel
 from wallet.app.naving import Navbar
+from wallet.app.witnessing.add_witness import AddWitness
+from wallet.app.witnessing.view_witness import ViewWitness
+from wallet.app.witnessing.witnesses import Witnesses
 from wallet.notifying.notifications import Notifications
 
 logger = logging.getLogger('wallet')
@@ -24,8 +27,9 @@ class Layout(ft.Row):
         self.navbar = Navbar(page=page)
         self.notifications = Notifications(app)
         self.identifiers = identifying.Identifiers(app)
-        self.contacts = contacting.Contact(app)
+        self.contacts = contacting.Contacts(app)
         self.settings = settings.Settings(app)
+        self.witnesses = Witnesses(app=self.app)
         self.splash = splashing.Splash(app)
 
         self._active_view = self.splash
@@ -44,12 +48,28 @@ class Layout(ft.Row):
         self._active_view = view if view else self.splash
         self.controls[-1] = self._active_view
 
+    async def set_witness_view(self, aid):
+        org = connecting.Organizer(hby=self.app.hby)
+        witness = org.get(aid)
+        self.active_view = ViewWitness(app=self.app, witness=witness)
+        self.page.floating_action_button = None
+        await self.update_async()
+
+    async def set_witnesses_view(self):
+        self.active_view = Witnesses(app=self.app)
+        self.page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.witnesses.add_witness)
+        await self.update_async()
+
+    async def set_witness_add_view(self):
+        self.active_view = AddWitness(app=self.app)
+        self.page.floating_action_button = None
+        await self.update_async()
+
     async def set_identifiers_list(self):
         self.active_view = self.identifiers
-
         self.page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.identifiers.add_identifier)
-
         self.navbar.rail.selected_index = Navbar.IDENTIFIERS
+
         await self.navbar.update_async()
         await self.update_async()
 
@@ -58,6 +78,7 @@ class Layout(ft.Row):
         self.active_view = ViewIdentifierPanel(self.app, hab)
         self.page.floating_action_button = None
         self.navbar.rail.selected_index = Navbar.IDENTIFIERS
+
         await self.navbar.update_async()
         await self.update_async()
 
@@ -70,20 +91,21 @@ class Layout(ft.Row):
 
         self.page.floating_action_button = None
         self.navbar.rail.selected_index = Navbar.IDENTIFIERS
+
         await self.navbar.update_async()
         await self.update_async()
 
     async def set_identifier_create(self):
         self.active_view = CreateIdentifierPanel(self.app)
-
         self.navbar.rail.selected_index = Navbar.IDENTIFIERS
+
         await self.navbar.update_async()
         await self.update_async()
 
     async def set_contact_create(self):
         self.active_view = CreateContactPanel(self.app)
-
         self.navbar.rail.selected_index = Navbar.CONTACTS
+
         await self.navbar.update_async()
         await self.update_async()
 
@@ -93,8 +115,8 @@ class Layout(ft.Row):
             icon=ft.icons.ADD,
             on_click=self.contacts.add_contact,
         )
-
         self.navbar.rail.selected_index = Navbar.CONTACTS
+
         await self.navbar.update_async()
         await self.page.update_async()
 
@@ -102,8 +124,8 @@ class Layout(ft.Row):
         org = connecting.Organizer(hby=self.app.hby)
         contact = org.get(aid)
         self.active_view = ViewContactPanel(app=self.app, contact=contact)
-
         self.navbar.rail.selected_index = Navbar.CONTACTS
+
         await self.navbar.update_async()
         await self.page.update_async()
 

@@ -2,6 +2,6 @@
 Contacting
 """
 
-from .contacts import Contact
+from .contacts import Contacts
 
-__all__ = ['Contact']
+__all__ = ['Contacts']

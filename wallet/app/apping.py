@@ -67,7 +67,7 @@ class WalletApp(ft.Stack):
         self.agentDrawer = drawing.AgentDrawer(app=self, page=page, open=True, config=config)
         self.agentDrawerButton = ft.IconButton(
             ft.icons.WALLET_ROUNDED,
-            tooltip='Agents',
+            tooltip='Wallets',
             on_click=self.toggle_drawer,
         )
         self.notificationsButton = ft.IconButton(
@@ -84,7 +84,7 @@ class WalletApp(ft.Stack):
                 padding=ft.padding.all(2),
                 margin=ft.margin.all(10),
             ),
-            title=ft.Text(self.name),  # not sure why this isn't picked up by theme.
+            title=ft.Text(self.name, weight=ft.FontWeight.BOLD),
             center_title=False,
             actions=self.actions,
         )
@@ -145,6 +145,14 @@ class WalletApp(ft.Stack):
             await self.layout.set_notifications_view()
         elif tr.match('/notifications/:note_id'):
             await self.layout.set_notifications_note_view(tr.note_id)
+        elif tr.match('/witnesses'):
+            await self.layout.set_witnesses_view()
+        elif tr.match('/witnesses/create'):
+            await self.layout.set_witness_add_view()
+        elif tr.match('/witnesses/:prefix/view'):
+            await self.layout.set_witness_view(tr.prefix)
+        elif tr.match('/identifiers/:prefix/view'):
+            await self.layout.set_witness_view()
         elif tr.match('/splash'):
             logger.info('Route change to /splash')
             await self.layout.set_splash_view()
