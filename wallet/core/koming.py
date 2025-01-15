@@ -144,41 +144,41 @@ class KomerBase:
         if val is not None:
             val = helping.datify(self.schema, json.loads(bytes(val).decode('utf-8')))
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
         return val
 
     def __deserializeMGPK(self, val):
         if val is not None:
             val = helping.datify(self.schema, msgpack.loads(bytes(val)))
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
         return val
 
     def __deserializeCBOR(self, val):
         if val is not None:
             val = helping.datify(self.schema, cbor2.loads(bytes(val)))
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
         return val
 
     def __serializeJSON(self, val):
         if val is not None:
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
             val = json.dumps(helping.dictify(val), separators=(',', ':'), ensure_ascii=False).encode('utf-8')
         return val
 
     def __serializeMGPK(self, val):
         if val is not None:
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
             val = msgpack.dumps(helping.dictify(val))
         return val
 
     def __serializeCBOR(self, val):
         if val is not None:
             if not isinstance(val, self.schema):
-                raise ValueError('Invalid schema type={} of value={}, expected {}.' ''.format(type(val), val, self.schema))
+                raise ValueError('Invalid schema type={} of value={}, expected {}.'.format(type(val), val, self.schema))
             val = cbor2.dumps(helping.dictify(val))
         return val
 

@@ -225,7 +225,7 @@ class NoticeMultisigGroupRotation(NotificationsBase):
                 continue  # don't query for self
             contact = self.org.get(pre)
             alias = contact['alias'] if 'alias' in contact else None
-            logger.info(f"Querying key state for {contact['alias']} with pre: {pre}")
+            logger.info(f'Querying key state for {contact["alias"]} with pre: {pre}')
             await OOBIResolverService(self.app).resolve_oobi(pre=contact['id'], oobi=contact['oobi'], alias=alias, force=True)
             await self.app.snack(f"Resolved {contact['alias']}'s key state for AID {pre}")
 

@@ -103,7 +103,7 @@ class GroupRequester(doing.Doer):
                 case coring.Ilks.rot | coring.Ilks.drt:
                     self.multisig_rotate(ghab, rot, group_op['smids'], group_op['rmids'])
                 case _:
-                    raise ValueError(f"Unsupported or invalid event type {serder.ked['t']}")
+                    raise ValueError(f'Unsupported or invalid event type {serder.ked["t"]}')
 
         # return False
 
@@ -156,7 +156,7 @@ class GroupRequester(doing.Doer):
                     case coring.Ilks.rot | coring.Ilks.drt:
                         await self.process_multisig_rotation_cue(cue, serder)
                     case _:
-                        raise ValueError(f"Unsupported or invalid event type {serder.ked['t']}")
+                        raise ValueError(f'Unsupported or invalid event type {serder.ked["t"]}')
 
             await asyncio.sleep(1)
 

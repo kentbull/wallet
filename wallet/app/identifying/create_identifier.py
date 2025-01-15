@@ -292,8 +292,8 @@ class CreateIdentifierPanel(IdentifierBase):
         m = self.app.members[idx]
         self.signingList.controls.append(
             ft.ListTile(
-                title=ft.Text(f"{m['alias']}", size=14),
-                subtitle=ft.Text(f"({m['id']})", font_family='monospace', size=10),
+                title=ft.Text(f'{m["alias"]}', size=14),
+                subtitle=ft.Text(f'({m["id"]})', font_family='monospace', size=10),
                 trailing=ft.IconButton(
                     ft.icons.DELETE_OUTLINED,
                     on_click=self.deleteMember,
@@ -330,8 +330,8 @@ class CreateIdentifierPanel(IdentifierBase):
         m = self.app.members[idx]
         self.rotationList.controls.append(
             ft.ListTile(
-                title=ft.Text(f"{m['alias']}", size=14),
-                subtitle=ft.Text(f"({m['id']})", font_family='monospace', size=10),
+                title=ft.Text(f'{m["alias"]}', size=14),
+                subtitle=ft.Text(f'({m["id"]})', font_family='monospace', size=10),
                 trailing=ft.IconButton(
                     ft.icons.DELETE_OUTLINED,
                     on_click=self.deleteRotation,
@@ -459,7 +459,7 @@ class CreateIdentifierPanel(IdentifierBase):
         return [
             ft.dropdown.Option(
                 key=wit['id'],
-                text=f"{wit['alias']} | {wit['id']}" if wit['alias'] else f"{wit['id']}",
+                text=f'{wit["alias"]} | {wit["id"]}' if wit['alias'] else f'{wit["id"]}',
                 data=(wit['id'], wit['alias']),
             )
             for wit in app.witnesses
@@ -471,7 +471,7 @@ class CreateIdentifierPanel(IdentifierBase):
 
     @staticmethod
     def loadMembers(app):
-        return [ft.dropdown.Option(key=idx, text=f"{m['alias']}") for idx, m in enumerate(app.members)]
+        return [ft.dropdown.Option(key=idx, text=f'{m["alias"]}') for idx, m in enumerate(app.members)]
 
     async def cancel(self, _):
         self.reset()

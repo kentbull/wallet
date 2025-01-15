@@ -211,7 +211,7 @@ class ViewIdentifierPanel(IdentifierBase):
             if pre in self.app.agent.hby.habs.keys():
                 continue  # Don't query key state for self because it's already in the agent
             contact = self.org.get(pre)
-            logger.info(f"Querying key state for {contact['alias']} with pre: {pre}")
+            logger.info(f'Querying key state for {contact["alias"]} with pre: {pre}')
             await OOBIResolverService(self.app).resolve_oobi(pre=pre, oobi=contact['oobi'], force=True)
             await self.app.snack(f"Resolved {contact['alias']}'s key state for AID {pre}")
 

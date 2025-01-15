@@ -86,7 +86,7 @@ class OobiResolver(Component):
                 await self.on_service_fail()
         else:
             await self.app.snack(
-                f"Missing field{'s'[:len(failed_on)^1]}: {', '.join(failed_on[:])}",
+                f'Missing field{"s"[: len(failed_on) ^ 1]}: {", ".join(failed_on[:])}',
             )
 
     def render(self):

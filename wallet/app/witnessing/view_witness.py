@@ -97,7 +97,7 @@ class ViewWitness(WitnessBase):
                                     [
                                         ft.Text('OOBI:', weight=ft.FontWeight.BOLD, size=14),
                                         ft.Text(  # OOBI URL
-                                            value=f"{self.witness['oobi']}",
+                                            value=f'{self.witness["oobi"]}',
                                             tooltip='OOBI URL',
                                             max_lines=3,
                                             overflow=ft.TextOverflow.VISIBLE,

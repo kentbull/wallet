@@ -175,7 +175,7 @@ class ViewContactPanel(ContactBase):
                                         ft.Text('OOBI:', weight=ft.FontWeight.BOLD, size=14, width=175),
                                         ft.Container(
                                             content=ft.Text(  # OOBI URL
-                                                value=f"{self.contact['oobi']}",
+                                                value=f'{self.contact["oobi"]}',
                                                 tooltip='OOBI URL',
                                                 max_lines=3,
                                                 overflow=ft.TextOverflow.VISIBLE,
@@ -286,7 +286,7 @@ class ViewContactPanel(ContactBase):
         found = False
         i = 0
         while not found and not self.cancelled:
-            self.pacifier.value = f"Waiting for challenge response{'.' * i}"
+            self.pacifier.value = f'Waiting for challenge response{"." * i}'
             await self.app.page.update_async()
 
             saiders = self.app.hby.db.reps.get(keys=(sig,))

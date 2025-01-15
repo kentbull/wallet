@@ -79,7 +79,7 @@ class RotateIdentifierPanel(IdentifierBase):
         return [
             ft.dropdown.Option(
                 key=wit['id'],
-                text=f"{wit['alias']} | {wit['id']}" if wit['alias'] else f"{wit['id']}",
+                text=f'{wit["alias"]} | {wit["id"]}' if wit['alias'] else f'{wit["id"]}',
                 data=(wit['id'], wit['alias']),
             )
             for wit in app.witnesses

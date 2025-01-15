@@ -100,5 +100,5 @@ class Contacts(ContactBase):
 
     async def view_contact(self, e):
         contact = e.control.data
-        self.app.page.route = f"/contacts/{contact['id']}/view"
+        self.app.page.route = f'/contacts/{contact["id"]}/view'
         await self.app.page.update_async()
