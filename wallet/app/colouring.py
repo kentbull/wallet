@@ -17,14 +17,14 @@ class Colouring:
 
     class Light(ft.Theme):
         RED = '#b00020'
-        PRIMARY = '#61783e'
-        ON_PRIMARY = '#ffffff'
-        SECONDARY = '#a1c64d'
-        ON_SECONDARY = '#000000'
-        SURFACE = '#f5f5f5'
-        BACKGROUND = '#ffffff'
+        PRIMARY = '#2962FF'
+        ON_PRIMARY = '#FFFFFF'
+        SECONDARY = '#00C853'
+        ON_SECONDARY = '#FFFFFF'
+        SURFACE = '#F5F5F5'
+        BACKGROUND = '#FFFFFF'
         ON_BACKGROUND = '#000000'
-        ON_SURFACE = '#000000'
+        ON_SURFACE = '#424242'
 
         def __init__(self):
             super().__init__(

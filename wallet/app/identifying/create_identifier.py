@@ -169,7 +169,6 @@ class CreateIdentifierPanel(IdentifierBase):
             width=550,
             text_size=14,
             text_style=ft.TextStyle(font_family='monospace'),
-            visible=False if self.app.environment is Environments.PRODUCTION else True,
         )
         self.witnessPoolDropdown = ft.Dropdown(
             options=self.witness_pools,

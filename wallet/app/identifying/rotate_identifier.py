@@ -6,6 +6,7 @@ import logging
 
 import flet as ft
 from flet_core import FontWeight
+from keri.app import connecting
 
 from wallet.app.identifying.identifier import IdentifierBase
 
@@ -18,7 +19,7 @@ class RotateIdentifierPanel(IdentifierBase):
         self.hab = hab
 
         kever = self.hab.kever
-
+        self.org = connecting.Organizer(hby=app.agent.hby)
         self.isith = ft.TextField(
             value=kever.tholder.sith,
         )
@@ -31,6 +32,28 @@ class RotateIdentifierPanel(IdentifierBase):
         self.toad = ft.TextField(
             value=kever.toader.num,
         )
+
+        self.witnesses = self.loadWitnesses(self.app)
+
+        self.witnessList = ft.Column()
+        self.witnessDropdown = ft.Dropdown(
+            options=self.witnesses,
+            expand=True,
+            text_size=14,
+            text_style=ft.TextStyle(font_family='monospace'),
+        )
+
+        self.witnessSelectorRow = ft.Row(
+            controls=[
+                self.witnessDropdown,
+                ft.IconButton(
+                    icon=ft.icons.ADD,
+                    tooltip='Add Witness',
+                    on_click=self.addWitness,
+                ),
+            ],
+        )
+
         super(RotateIdentifierPanel, self).__init__(
             app,
             self.panel(),
@@ -51,6 +74,16 @@ class RotateIdentifierPanel(IdentifierBase):
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
             ),
         )
+
+    def loadWitnesses(self, app):
+        return [
+            ft.dropdown.Option(
+                key=wit['id'],
+                text=f"{wit['alias']} | {wit['id']}" if wit['alias'] else f"{wit['id']}",
+                data=(wit['id'], wit['alias']),
+            )
+            for wit in app.witnesses
+        ]
 
     async def rotateee(self, _):
         self.hab.rotate(
@@ -79,6 +112,81 @@ class RotateIdentifierPanel(IdentifierBase):
         self.app.page.route = f'/identifiers/{self.hab.pre}/view'
         await self.app.page.update_async()
 
+    def witnessTile(self, wit_ct, on_delete):
+        """
+        Parameters:
+            wit_ct (dict): contact entry of the witness
+        """
+        if 'alias' in wit_ct:
+            title = ft.Column([ft.Text(wit_ct['alias']), ft.Text(wit_ct['id'], font_family='monospace')])
+        else:
+            title = ft.Text(wit_ct['id'], font_family='monospace')
+        return ft.ListTile(
+            title=title,
+            trailing=ft.IconButton(
+                ft.icons.DELETE_OUTLINED,
+                on_click=on_delete,
+                data=wit_ct['id'],
+            ),
+            data=wit_ct['id'],
+        )
+
+    def findSelectedWitness(self, aid):
+        for tile in self.witnessList.controls:
+            if tile.data == aid:
+                return tile
+
+        return None
+
+    @staticmethod
+    def recommendedThold(numWits):
+        match numWits:
+            case 0:
+                return 0
+            case 1:
+                return 1
+            case 2 | 3:
+                return 2
+            case 4:
+                return 3
+            case 5 | 6:
+                return 4
+            case 7:
+                return 5
+            case 8 | 9:
+                return 7
+            case 10:
+                return 8
+
+    async def deleteWitness(self, e):
+        aid = e.control.data
+        if (tile := self.findSelectedWitness(aid)) is not None:
+            self.witnessList.controls.remove(tile)
+
+        self.toad.value = str(self.recommendedThold(len(self.witnessList.controls)))
+        await self.toad.update_async()
+        await self.witnessList.update_async()
+
+    async def addWitness(self, _):
+        if not self.witnessDropdown.value:
+            await self.app.snack('Please select a witness')
+            return
+        witness = self.witnessDropdown.value
+        self.witnessDropdown.value = None
+
+        if self.findSelectedWitness(witness) is not None:
+            await self.app.snack(f'You can not add {witness} more than once')
+            return
+
+        witness = self.org.get(witness)
+        self.witnessList.controls.append(self.witnessTile(witness, self.deleteWitness))
+
+        self.toad.value = str(self.recommendedThold(len(self.witnessList.controls)))
+        await self.toad.update_async()
+
+        await self.witnessDropdown.update_async()
+        await self.witnessList.update_async()
+
     def panel(self):
         kever = self.hab.kever
 
@@ -98,17 +206,16 @@ class RotateIdentifierPanel(IdentifierBase):
                             ft.Text(kever.sner.num),
                         ]
                     ),
-
-                    ft.Divider(),
                     ft.ExpansionTile(
                         title=ft.Text('Witness configuration'),
                         affinity=ft.TileAffinity.LEADING,
                         initially_expanded=False,
                         controls=[
-                            ],
+                            self.witnessList,
+                            self.witnessSelectorRow,
+                        ],
                         expand=True,
                     ),
-                    ft.Divider(),
                     ft.ExpansionTile(
                         title=ft.Text('Key configuration'),
                         affinity=ft.TileAffinity.LEADING,
@@ -123,7 +230,7 @@ class RotateIdentifierPanel(IdentifierBase):
                                                     ft.Text(
                                                         'Current signing threshold',
                                                         weight=FontWeight.BOLD,
-                                                        width=175,
+                                                        width=275,
                                                     ),
                                                     self.isith,
                                                 ]
@@ -133,7 +240,7 @@ class RotateIdentifierPanel(IdentifierBase):
                                                     ft.Text(
                                                         'Next signing threshold',
                                                         weight=FontWeight.BOLD,
-                                                        width=175,
+                                                        width=275,
                                                     ),
                                                     self.nsith,
                                                 ]
@@ -143,7 +250,7 @@ class RotateIdentifierPanel(IdentifierBase):
                                                     ft.Text(
                                                         'Count',
                                                         weight=FontWeight.BOLD,
-                                                        width=175,
+                                                        width=275,
                                                     ),
                                                     self.ncount,
                                                 ]
@@ -153,7 +260,7 @@ class RotateIdentifierPanel(IdentifierBase):
                                                     ft.Text(
                                                         'Toad',
                                                         weight=FontWeight.BOLD,
-                                                        width=175,
+                                                        width=275,
                                                     ),
                                                     self.toad,
                                                 ]

@@ -68,7 +68,6 @@ class Witnesses(WitnessBase):
             None
         """
         contacts = sorted(contacts, key=lambda c: c['alias'])
-        print(contacts)
         contacts = list(filter(lambda c: 'witness' in c['type'], contacts))
 
         self.list.controls.clear()

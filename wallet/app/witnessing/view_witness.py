@@ -68,19 +68,18 @@ class ViewWitness(WitnessBase):
     def panel(self):
         options = []
 
+        aids = set()
+
         for hab in self.app.hby.habs:
             options.append(
                 ft.dropdown.Option(
                     key=self.app.hby.habs[hab].pre, text=f'{self.app.hby.habs[hab].name} - {self.app.hby.habs[hab].pre}'
                 ),
             )
-            print(self.app.hby.habs[hab].kever.wits)
+            if self.witness in self.app.hby.habs[hab].kever.wits:
+                aids.add(hab)
 
-        self.identifiers = ft.Dropdown(
-            width=800,
-            options=options,
-            on_change=self.select_identifier,
-        )
+        print(aids)
 
         return ft.Container(
             ft.Column(
@@ -96,7 +95,7 @@ class ViewWitness(WitnessBase):
                             [
                                 ft.Row(
                                     [
-                                        ft.Text('OOBIdd:', weight=ft.FontWeight.BOLD, size=14),
+                                        ft.Text('OOBI:', weight=ft.FontWeight.BOLD, size=14),
                                         ft.Text(  # OOBI URL
                                             value=f"{self.witness['oobi']}",
                                             tooltip='OOBI URL',
@@ -118,7 +117,6 @@ class ViewWitness(WitnessBase):
                     ),
                     ft.Divider(),
                     ft.Text('Witness for:', size=14),
-                    self.identifiers,
                     ft.Divider(),
                     ft.Row(
                         [
