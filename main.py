@@ -7,7 +7,7 @@ from pathlib import Path
 
 import flet as ft
 import uvloop
-from flet_core import Page
+from flet.core.page import Page
 
 from wallet.app import colouring
 from wallet.core import configing
@@ -147,10 +147,10 @@ def wrap_with_config(config: WalletConfig):
         app = WalletApp(page, config)
         page.add(app)
         app.colouring = clring
+        page.end_drawer = app.agentDrawer
 
         logger.info('Wallet is running.')
-        await app.toggle_drawer(None)
-        await app.page.update_async()
+        app.page.update()
 
     return wallet_main
 

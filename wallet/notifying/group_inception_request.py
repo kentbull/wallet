@@ -2,7 +2,8 @@ import asyncio
 import logging
 
 import flet as ft
-from keri.core import eventing, serdering
+from keri import kering
+from keri.core import serdering
 
 from wallet.app.colouring import Colouring
 from wallet.notifying.notification import NotificationsBase
@@ -101,7 +102,7 @@ class NoticeMultisigGroupInception(NotificationsBase):
                         padding=ft.padding.only(10, 0, 10, 0),
                     ),
                     ft.Container(
-                        ft.IconButton(icon=ft.icons.CLOSE, on_click=self.cancel),
+                        ft.IconButton(icon=ft.Icons.CLOSE, on_click=self.cancel),
                         alignment=ft.alignment.top_right,
                         expand=True,
                         padding=ft.padding.only(0, 0, 10, 0),
@@ -114,7 +115,7 @@ class NoticeMultisigGroupInception(NotificationsBase):
 
     async def cancel(self, e):
         self.app.page.route = '/notifications'
-        await self.app.page.update_async()
+        self.app.page.update()
 
     def did_mount(self):
         self.page.run_task(self.get_exchange_message)
@@ -181,7 +182,7 @@ class NoticeMultisigGroupInception(NotificationsBase):
         self.group_info.visible = True
         self.btn_join.disabled = False
 
-        await self.update_async()
+        self.update()
 
         return None
 
@@ -233,8 +234,8 @@ class NoticeMultisigGroupInception(NotificationsBase):
         rid = e.control.data
         if self.group_alias.value == '':
             self.group_alias.border_color = Colouring.get(Colouring.RED)
-            await self.app.snack('Enter an alias for the group')
-            await self.update_async()
+            self.app.snack('Enter an alias for the group')
+            self.update()
             return
 
         inits = {}
@@ -273,4 +274,4 @@ class NoticeMultisigGroupInception(NotificationsBase):
             None
         """
         self.app.page.route = '/notifications'
-        await self.app.page.update_async()
+        self.app.page.update()
