@@ -388,7 +388,7 @@ class CreateIdentifierPanel(IdentifierBase):
                 self.app.snack('Salt is required and must be 21 characters long')
                 return
 
-            kwargs['salt'] = coring.Salter(raw=self.salt.value.encode('utf-8')).qb64
+            kwargs['salt'] = signing.Salter(raw=self.salt.value.encode('utf-8')).qb64
             kwargs['icount'] = int(self.keyCount.value)
             kwargs['isith'] = int(self.keySith.value)
             kwargs['ncount'] = int(self.nkeyCount.value)

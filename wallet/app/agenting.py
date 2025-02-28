@@ -107,7 +107,7 @@ class AgentInitialization(ft.AlertDialog):
         )
         kwa = dict()
 
-        kwa['salt'] = coring.Salter(raw=self.app.salt.encode('utf-8')).qb64
+        kwa['salt'] = signing.Salter(raw=self.app.salt.encode('utf-8')).qb64
         kwa['bran'] = self.passcode.value
         kwa['algo'] = self.app.algo
         kwa['tier'] = self.app.tier

@@ -2,17 +2,22 @@ import ctypes
 import logging.config
 import os
 import platform
+import sys
 from ctypes.util import find_library
 from pathlib import Path
 
+import certifi  # noqa - required so that the certifi package is included in the Flet build
 import flet as ft
 import uvloop
 from flet.core.page import Page
 
+from vendor import v_wsgiref  # noqa - required so that the v_wsgiref package is included in the Flet build
 from wallet.app import colouring
 from wallet.core import configing
 from wallet.core.configing import WalletConfig
 from wallet.storing import THEME_KEY
+
+sys.modules['wsgiref'] = v_wsgiref  # noqa - required so that the wsgiref package is included in the Flet build
 
 logging.config.fileConfig('logging.conf')
 logger = logging.getLogger('wallet')

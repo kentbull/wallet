@@ -245,8 +245,8 @@ class NoticeMultisigGroupInception(NotificationsBase):
         inits['isith'] = oicp.ked['kt']
         inits['nsith'] = oicp.ked['nt']
 
-        inits['estOnly'] = eventing.TraitCodex.EstOnly in oicp.ked['c']
-        inits['DnD'] = eventing.TraitCodex.DoNotDelegate in oicp.ked['c']
+        inits['estOnly'] = kering.TraitCodex.EstOnly in oicp.ked['c']
+        inits['DnD'] = kering.TraitCodex.DoNotDelegate in oicp.ked['c']
 
         inits['toad'] = oicp.ked['bt']
         inits['wits'] = oicp.ked['b']
